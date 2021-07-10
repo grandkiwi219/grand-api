@@ -1,0 +1,16 @@
+{
+  "name": "grand-api",
+  "version": "1.0.0",
+  "description": "get api data",
+  "keywords": [
+    "api",
+    "data"
+  ],
+  "homepage": "https://github.com/grandkiwi219",
+  "license": "MIT",
+  "author": {
+    "name": "grand kiwi",
+    "url": "https://grandkiwi.kro.kr"
+  },
+  "main": "./src/index.js"
+}
