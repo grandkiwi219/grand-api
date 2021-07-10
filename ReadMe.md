@@ -1,5 +1,11 @@
 # grand-api
 
+I made this module simple.
+간단하게 만들어봤습니다.
+
+This module is for me.
+이 모듈은 저가 사용할려고 처음 만들어본 모듈입니다.
+
 example
 
 ```javascript
