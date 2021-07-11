@@ -1,12 +1,14 @@
 # grand-api
 
-I made this module simple.
+I made this module simple.   
 간단하게 만들어봤습니다.
 
-This module is for me.
+This module is made for me.   
 이 모듈은 저가 사용할려고 처음 만들어본 모듈입니다.
 
-example
+---
+
+example)
 
 ```javascript
 const Api = require("grand-api");
@@ -38,14 +40,14 @@ Client.setQuery(["key=key", "key2=key2"]);
 
 console.log(Client.query);
 /*
-  => ['key=key']
+  => ['key=key', 'key2=key2']
  */
 
 
 console.log(Client.result(true));
 /*
   => {
-       url: 'https://api.grandkiwi.kro.kr/background.json?key=key',
+       url: 'https://api.grandkiwi.kro.kr/background.json?key=key&key2=key2',
        header: 'header'
      }
  */
@@ -68,8 +70,8 @@ console.log(Client);
        type: null,
        path: '/background.json',
        header: 'header',
-       query: ['key=key'],
-       version: '1.0.0'
+       query: ['key=key', 'key2=key2'],
+       version: '1.0.2'
      }
  */
 ```
