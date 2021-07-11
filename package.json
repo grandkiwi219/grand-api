@@ -1,6 +1,6 @@
 {
   "name": "grand-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "get api data",
   "keywords": [
     "api",
@@ -12,5 +12,8 @@
     "name": "grand kiwi",
     "url": "https://grandkiwi.kro.kr"
   },
-  "main": "./src/index.js"
+  "main": "./src/index.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
 }
