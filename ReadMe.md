@@ -71,7 +71,7 @@ console.log(Client);
        path: '/background.json',
        header: 'header',
        query: ['key=key', 'key2=key2'],
-       version: '1.0.2'
+       version: '1.0.3'
      }
  */
 ```
