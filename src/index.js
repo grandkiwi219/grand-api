@@ -23,18 +23,26 @@ class Api {
     }
 
     setPath(...path) {
-        try {
-            let combine = path.join('/');
-            this.path = combine.startsWith('/') ? combine : '/' + combine;
+        if (path.length < 1) {
+            this.path = null;
             return this.path;
-        } catch (e) {
-            console.log(e);
-            return this.path;
+        } else {
+            try {
+                let combine = path.join('/');
+                this.path = combine.startsWith('/') ? combine : '/' + combine;
+                return this.path;
+            } catch (e) {
+                console.log(e);
+                return this.path;
+            }
         }
     }
 
-    setHeader(header) {
-        if (typeof header === 'string' || typeof header === 'object' || typeof header === 'number') {
+    setHeader(header = null) {
+        if (header === null) {
+            this.header = null;
+            return this.header;
+        } else if (typeof header === 'string' || typeof header === 'object' || typeof header === 'number') {
             this.header = header;
             return this.header;
         } else {
@@ -44,29 +52,34 @@ class Api {
     }
 
     setQuery(...query) {
-        arr = [];
-        query.forEach(r => {
-            if (typeof r == 'string') {
-                return arr.push(r)
-            } else if (typeof r == 'object') {
-                try {
-                    r.forEach(t => {
-                        if (typeof t == 'string') {
-                            return arr.push(t)
-                        } else if (typeof t == 'object') {
-                            return console.log('Stop object spam')
-                        }
-                    })
-                } catch (e) {
-                    return console.log('setQuery uses only string and array');
+        if (query.length < 1) {
+            this.query = null;
+            return this.query;
+        } else {
+            arr = [];
+            query.forEach(r => {
+                if (typeof r == 'string') {
+                    return arr.push(r)
+                } else if (typeof r == 'object') {
+                    try {
+                        r.forEach(t => {
+                            if (typeof t == 'string') {
+                                return arr.push(t)
+                            } else if (typeof t == 'object') {
+                                return console.log('Stop object spam')
+                            }
+                        })
+                    } catch (e) {
+                        return console.log('setQuery uses only string and array');
+                    }
                 }
-            }
-        });
-        this.query = arr;
-        return this.query;
+            });
+            this.query = arr;
+            return this.query;
+        }
     }
 
-    result(headerTF) {
+    result(headerTF = false) {
         let header = headerTF == true ? headerTF : false;
         let result
         let path = this.path ? this.path : '';
