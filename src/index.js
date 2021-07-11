@@ -56,7 +56,7 @@ class Api {
             this.query = null;
             return this.query;
         } else {
-            arr = [];
+            let arr = [];
             query.forEach(r => {
                 if (typeof r == 'string') {
                     return arr.push(r)
