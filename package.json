@@ -1,8 +1,9 @@
 {
   "name": "grand-api",
-  "version": "1.0.3",
-  "description": "get api data",
+  "version": "1.0.4",
+  "description": "create url & get api data",
   "keywords": [
+    "url",
     "api",
     "data"
   ],
