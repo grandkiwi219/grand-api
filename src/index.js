@@ -1,20 +1,21 @@
-const NotFoundUrl = "https://example.com";
 const type = require("./type.json");
 const fetch = require("node-fetch");
 
 class Api {
 
-    constructor(arg = NotFoundUrl) {
-        if (type[arg.toLowerCase()]) {
-            this.url = type[arg.toLowerCase()];
-            this.type = arg;
-        } else {
-            if (typeof arg === 'string') {
-                this.url = arg.startsWith('https://') || arg.startsWith('http://') ? arg.endsWith('/') ? arg.slice(0, arg.length - 1) : arg : arg.endsWith('/') ? 'https://' + arg.slice(0, arg.length - 1) : 'https://' + arg;
+    constructor(arg = "Not Found") {
+        if (typeof arg == 'string') {
+            let argType = arg.toLowerCase().replace(' ', '-');
+            if (type[argType]) {
+                this.url = type[argType];
+                this.type = argType;
             } else {
-                this.url = NotFoundUrl;
+                this.url = arg.startsWith('https://') || arg.startsWith('http://') ? arg.endsWith('/') ? arg.slice(0, arg.length - 1) : arg : arg.endsWith('/') ? 'https://' + arg.slice(0, arg.length - 1) : 'https://' + arg;
+                this.type = null;
             }
-            this.type = null;
+        } else {
+            this.url = type["not-found"];
+            thus.type = null;
         }
         this.path = null;
         this.header = null;
@@ -42,11 +43,8 @@ class Api {
         if (header === null) {
             this.header = null;
             return this.header;
-        } else if (typeof header === 'string' || typeof header === 'object' || typeof header === 'number') {
-            this.header = header;
-            return this.header;
         } else {
-            console.log('header isn\'t string, object, or number');
+            this.header = header;
             return this.header;
         }
     }
@@ -79,8 +77,8 @@ class Api {
         }
     }
 
-    result(headerTF = false) {
-        let header = headerTF == true ? headerTF : false;
+    result(addHeader = false) {
+        let header = addHeader == true ? true : false;
         let result
         let path = this.path ? this.path : '';
         let query = this.query ? '?' + this.query.join('&') : '';
@@ -94,11 +92,12 @@ class Api {
         return result;
     }
 
-    async data() {
+    async data(nullHeader = false) {
+        let header = nullHeader == true ? true : false;
         let data;
         let base = this.result(true);
         try {
-            data = base.header ? await fetch(base.url, { header : base.header }).then(r => r.json()) : await fetch(base.url).then(r => r.json());
+            data = base.header || header ? await fetch(base.url, { headers : base.header }).then(r => r.json()) : await fetch(base.url).then(r => r.json());
             return data;
         } catch (e) {
             console.log(e);
