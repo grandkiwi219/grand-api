@@ -13,7 +13,7 @@ const Client = new Api("https://api.grandkiwi.kro.kr");
 
 console.log(Client.url);
 /*
-  => 'https://api.grand.kiwi.kro.kr'
+  => 'https://api.grandkiwi.kro.kr'
  */
 
 
@@ -68,7 +68,7 @@ console.log(Client);
        path: '/background.json',
        header: 'header',
        query: ['key=key', 'key2=key2'],
-       version: '1.0.3'
+       version: '1.0.4'
      }
  */
 ```
