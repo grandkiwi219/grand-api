@@ -15,7 +15,7 @@ class Api {
             }
         } else {
             this.url = type["not-found"];
-            thus.type = null;
+            this.type = null;
         }
         this.path = null;
         this.header = null;
@@ -26,15 +26,15 @@ class Api {
     setPath(...path) {
         if (path.length < 1) {
             this.path = null;
-            return this.path;
+            return this;
         } else {
             try {
                 let combine = path.join('/');
                 this.path = combine.startsWith('/') ? combine : '/' + combine;
-                return this.path;
+                return this;
             } catch (e) {
                 console.log(e);
-                return this.path;
+                return this;
             }
         }
     }
@@ -42,17 +42,17 @@ class Api {
     setHeader(header = null) {
         if (header === null) {
             this.header = null;
-            return this.header;
+            return this;
         } else {
             this.header = header;
-            return this.header;
+            return this;
         }
     }
 
     setQuery(...query) {
         if (query.length < 1) {
             this.query = null;
-            return this.query;
+            return this;
         } else {
             let arr = [];
             query.forEach(r => {
@@ -73,7 +73,7 @@ class Api {
                 }
             });
             this.query = arr;
-            return this.query;
+            return this;
         }
     }
 
